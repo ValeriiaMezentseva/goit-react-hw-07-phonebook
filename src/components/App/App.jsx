@@ -23,11 +23,6 @@ export const App = () => {
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-
-  // const submitHandler = data => {
-  //   dispatch(addContact(data));
-  //   Notify.success(`${data.name} was successfully added to your contacts`);
-  // };
     
 
   const removeContact = id => {

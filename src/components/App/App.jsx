@@ -3,7 +3,6 @@ import ContactsForm from "../Form";
 import ContactsList from "../Contacts";
 import Loader from "components/Loader";
 import Filter from "../Filter";
-// import { Notify } from "notiflix";
 import { useEffect } from "react";
 import { setFilter } from "redux/slice/sliceFilter";
 import { useSelector, useDispatch } from 'react-redux';

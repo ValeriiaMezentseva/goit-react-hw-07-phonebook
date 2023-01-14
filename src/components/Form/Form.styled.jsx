@@ -45,6 +45,7 @@ font-size: 16px;
 padding: 10px;
 border: 2px solid #ccc;
 border-radius: 5px;
+height: 50px;
  :not(:last-child) {
     margin-right: 10px;
   }

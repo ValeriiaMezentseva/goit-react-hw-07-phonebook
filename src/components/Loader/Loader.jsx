@@ -1,7 +1,6 @@
+import { LoaderBox, ThreeDotsBtn, SpinnerBtn  } from './Loader.styled';
 
-import { LoaderBox, ThreeDotsBtn } from './Loader.styled';
-
-const Loader = () => {
+export const Loader = () => {
     return (
         <LoaderBox>
             <ThreeDotsBtn color='#4287f5'/>
@@ -9,4 +8,10 @@ const Loader = () => {
     )
 };
 
-export default Loader; 
+export const LoaderSpinner = () => {
+    return (
+        <LoaderBox>
+            <SpinnerBtn color='#4287f5' />
+        </LoaderBox>
+    )
+};

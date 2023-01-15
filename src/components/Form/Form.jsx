@@ -2,9 +2,10 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix';
+import { Loader } from 'components/Loader/Loader';
 import { FormWrapper, FormBox, Label, Input, Error, FormButton } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectOpenFilter } from 'redux/selectors';
+import { selectContacts, selectOpenFilter , selectOperation} from 'redux/selectors';
 import { toggleFilterAction } from "redux/slice/sliceFilter";
 import { addContact } from 'redux/operations';
 
@@ -26,6 +27,7 @@ const initialValues = {
 const ContactsForm = () => {
 
     const contacts = useSelector(selectContacts); 
+    const operation = useSelector(selectOperation);
     const isOpenFilter = useSelector(selectOpenFilter);
     const dispatch = useDispatch();  
     const toggle = () => {
@@ -77,7 +79,7 @@ const ContactsForm = () => {
                      <Error name='number' component='div' /> 
                          </Label>
                          </FormBox>
-                     <FormButton type="submit"> Add contact </FormButton> 
+                     <FormButton type="submit"> {operation === 'add' ? <Loader/> : 'Add contact' } </FormButton> 
                      <FormButton type="button" onClick={toggle} isOpen={isOpenFilter}>{isOpenFilter ? 'Close filter' : 'Search'}</FormButton>
                  </Form>
                  </FormWrapper>

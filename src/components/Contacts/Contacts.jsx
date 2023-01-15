@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 import { useSelector } from 'react-redux';
 import { Notify } from 'notiflix';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import { LoaderSpinner } from 'components/Loader/Loader';
+import { selectContacts, selectFilter, selectOperation } from 'redux/selectors';
 import { ItemUser, UserIcon, ContactList, ContactsButton, ContactsTitle, ContactsContainer } from './Contacts.styled';
 
 
@@ -13,6 +13,7 @@ const ContactsList = () => {
     
     const contacts = useSelector(selectContacts);
     const filter = useSelector(selectFilter);
+    const operation = useSelector(selectOperation); 
     
     const removeContact = id => {
         try {
@@ -40,7 +41,8 @@ const ContactsList = () => {
                     {filtredContacts.map(({ id, name, phone }) => (
                         <ItemUser key={id}>
                             <UserIcon /> {name}: {phone}
-                            <ContactsButton onClick={() => removeContact(id)}><TiDeleteOutline /></ContactsButton>
+                            <ContactsButton onClick={() => removeContact(id)}>
+                                { operation === id ? <LoaderSpinner /> : <TiDeleteOutline />}</ContactsButton>
                         </ItemUser>
                     ))}
                 </ContactList>
@@ -51,10 +53,3 @@ const ContactsList = () => {
 
 export default ContactsList; 
 
-ContactsList.propTypes = {
-    contacts: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        phone: PropTypes.string.isRequired,
-    })),
-};
